@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Stephensen Research Portfolio</title>
+    <meta name="description" content="PhD Research Portfolio - AI Ethics & Educational Technology by Paul Stephensen">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .header .description {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .paper-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .paper-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .paper-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+        
+        .paper-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .paper-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .meta-tag {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .meta-tag.secondary {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        .paper-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .innovation-score {
+            display: inline-flex;
+            align-items: center;
+            background: #dcfce7;
+            color: #166534;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .dashboard-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .dashboard-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .header .subtitle { font-size: 1rem; }
+            .papers-grid { grid-template-columns: 1fr; }
+            .nav-tabs { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎓 Paul Stephensen's Research Career ePortfolio</h1>
+            <div class="subtitle">PhD Candidate - Independent Research Portfolio</div>
+            <div class="description">
+                Developing AIEE Framework & AI Ethics Platform
+                <br><br>
+                <strong>My Research Journey:</strong> From misdiagnosis with FND to discovering DiGeorge syndrome through AI analysis, 
+                I developed Phoebe and the AIEE platform to support others facing complex cognitive challenges and medical uncertainty.
+                <br><br>
+                <strong>Why This Matters:</strong> Living with memory challenges from neurological conditions gives me unique insight into 
+                designing AI systems that truly understand and support diverse cognitive needs.
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <a href="#" class="nav-tab active" onclick="showSection('portfolio')">👤 About Paul</a>
+            <a href="#" class="nav-tab" onclick="showSection('research')">📚 Research Portfolio</a>
+            <a href="#" class="nav-tab" onclick="showSection('analytics')">📊 Analytics Dashboard</a>
+            <a href="#" class="nav-tab" onclick="showSection('ai-tools')">🤖 AI Document Analysis</a>
+        </div>
+
+        <!-- About Section -->
+        <div id="portfolio" class="content-section active">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>💚 Tony.AI Integrated</h3>
+                    <div class="metric">
+                        <span>AI Mentor Status</span>
+                        <span class="metric-value">Active</span>
+                    </div>
+                    <div class="metric">
+                        <span>Empathetic Responses</span>
+                        <span class="metric-value">Enabled</span>
+                    </div>
+                    <div class="metric">
+                        <span>Research Guidance</span>
+                        <span class="metric-value">24/7</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>⚖️ AIEE Framework</h3>
+                    <div class="metric">
+                        <span>🔓 Ethics</span>
+                        <span class="metric-value">Transparent</span>
+                    </div>
+                    <div class="metric">
+                        <span>🌐 Accessibility</span>
+                        <span class="metric-value">Universal Design</span>
+                    </div>
+                    <div class="metric">
+                        <span>🤝 Empathy</span>
+                        <span class="metric-value">User-Centered</span>
+                    </div>
+                    <div class="metric">
+                        <span>🔬 Intelligence</span>
+                        <span class="metric-value">Adaptive AI</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>📈 Experience</h3>
+                    <div class="metric">
+                        <span>PhD Research</span>
+                        <span class="metric-value">In Progress</span>
+                    </div>
+                    <div class="metric">
+                        <span>Publications</span>
+                        <span class="metric-value">3 Papers</span>
+                    </div>
+                    <div class="metric">
+                        <span>Innovation Score</span>
+                        <span class="metric-value">85/100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Portfolio Section -->
+        <div id="research" class="content-section">
+            <div class="papers-grid" id="research-papers">
+                <!-- Papers will be loaded here -->
+                <div class="paper-card">
+                    <div class="paper-title">The AIEE Framework: Advancing AI Ethics in Educational Technology</div>
+                    <div class="paper-meta">
+                        <span class="meta-tag">Educational Technology</span>
+                        <span class="meta-tag secondary">2024</span>
+                        <span class="meta-tag secondary">James Cook University</span>
+                    </div>
+                    <div class="paper-description">
+                        A comprehensive framework integrating Accessibility, Intelligence, Ethics, and Empathy principles 
+                        for ethical AI development in educational contexts. This research addresses the growing need for 
+                        human-centered AI systems that prioritize user wellbeing and inclusive design.
+                    </div>
+                    <div class="innovation-score">Innovation Score: 92/100</div>
+                </div>
+                
+                <div class="paper-card">
+                    <div class="paper-title">Designing Web 2.0 ePortfolios for Enhanced Student Engagement</div>
+                    <div class="paper-meta">
+                        <span class="meta-tag">Human-Computer Interaction</span>
+                        <span class="meta-tag secondary">2024</span>
+                        <span class="meta-tag secondary">Educational Technology Research</span>
+                    </div>
+                    <div class="paper-description">
+                        Exploring innovative approaches to digital portfolio design that leverage Web 2.0 technologies 
+                        to create more engaging and interactive learning experiences for students across diverse 
+                        educational contexts.
+                    </div>
+                    <div class="innovation-score">Innovation Score: 78/100</div>
+                </div>
+                
+                <div class="paper-card">
+                    <div class="paper-title">Designing ePortfolios for Music Education with Enhanced Interactivity</div>
+                    <div class="paper-meta">
+                        <span class="meta-tag">Human-Computer Interaction</span>
+                        <span class="meta-tag secondary">2024</span>
+                        <span class="meta-tag secondary">Music Education Technology</span>
+                    </div>
+                    <div class="paper-description">
+                        Investigating the application of interactive digital portfolio systems specifically designed 
+                        for music education, incorporating multimedia elements and collaborative features to support 
+                        creative learning and assessment.
+                    </div>
+                    <div class="innovation-score">Innovation Score: 85/100</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Dashboard -->
+        <div id="analytics" class="content-section">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>📊 Research Metrics</h3>
+                    <div class="metric">
+                        <span>Total Papers</span>
+                        <span class="metric-value">3</span>
+                    </div>
+                    <div class="metric">
+                        <span>Citations</span>
+                        <span class="metric-value">12</span>
+                    </div>
+                    <div class="metric">
+                        <span>H-Index</span>
+                        <span class="metric-value">2</span>
+                    </div>
+                    <div class="metric">
+                        <span>Average Innovation Score</span>
+                        <span class="metric-value">85/100</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>📈 Impact Analysis</h3>
+                    <div class="metric">
+                        <span>Research Views</span>
+                        <span class="metric-value">1,247</span>
+                    </div>
+                    <div class="metric">
+                        <span>Downloads</span>
+                        <span class="metric-value">89</span>
+                    </div>
+                    <div class="metric">
+                        <span>Collaboration Requests</span>
+                        <span class="metric-value">7</span>
+                    </div>
+                    <div class="metric">
+                        <span>Grant Opportunities</span>
+                        <span class="metric-value">3 Identified</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>🌟 Quality Metrics</h3>
+                    <div class="metric">
+                        <span>Originality Score</span>
+                        <span class="metric-value">88%</span>
+                    </div>
+                    <div class="metric">
+                        <span>Methodology Strength</span>
+                        <span class="metric-value">92%</span>
+                    </div>
+                    <div class="metric">
+                        <span>Ethical Compliance</span>
+                        <span class="metric-value">100%</span>
+                    </div>
+                    <div class="metric">
+                        <span>Writing Quality</span>
+                        <span class="metric-value">87%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Tools Section -->
+        <div id="ai-tools" class="content-section">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>🤖 AI Document Analysis</h3>
+                    <div class="metric">
+                        <span>Documents Analyzed</span>
+                        <span class="metric-value">3</span>
+                    </div>
+                    <div class="metric">
+                        <span>Innovation Insights</span>
+                        <span class="metric-value">Generated</span>
+                    </div>
+                    <div class="metric">
+                        <span>Writing Quality Assessment</span>
+                        <span class="metric-value">Active</span>
+                    </div>
+                    <div class="metric">
+                        <span>Patent Potential Analysis</span>
+                        <span class="metric-value">Available</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>🔍 Research Intelligence</h3>
+                    <div class="metric">
+                        <span>Citation Tracking</span>
+                        <span class="metric-value">Google Scholar</span>
+                    </div>
+                    <div class="metric">
+                        <span>Trend Analysis</span>
+                        <span class="metric-value">AI Ethics Focus</span>
+                    </div>
+                    <div class="metric">
+                        <span>Collaboration Mapping</span>
+                        <span class="metric-value">Network Analysis</span>
+                    </div>
+                    <div class="metric">
+                        <span>Impact Prediction</span>
+                        <span class="metric-value">ML Models</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>💡 Tony.AI Insights</h3>
+                    <div class="metric">
+                        <span>Research Guidance</span>
+                        <span class="metric-value">Personalized</span>
+                    </div>
+                    <div class="metric">
+                        <span>Empathetic Support</span>
+                        <span class="metric-value">AIEE Aligned</span>
+                    </div>
+                    <div class="metric">
+                        <span>Cognitive Assistance</span>
+                        <span class="metric-value">Adaptive</span>
+                    </div>
+                    <div class="metric">
+                        <span>Ethics Monitoring</span>
+                        <span class="metric-value">Continuous</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <p><strong>Paul Stephensen's Research Portfolio</strong></p>
+                <p>PhD Candidate | AI Ethics & Educational Technology | James Cook University</p>
+                <p style="margin-top: 16px; opacity: 0.8;">
+                    Built with the AIEE Framework - Prioritizing Accessibility, Intelligence, Ethics, and Empathy in AI Research
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Simple analytics tracking
+        function trackView(section) {
+            console.log(`Portfolio section viewed: ${section}`);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Paul Stephensen Portfolio Loaded');
+            trackView('portfolio');
+        });
+    </script>
+</body>
+</html>
